@@ -1,11 +1,12 @@
 package calculadora
 
 import javafx.beans.binding.When
-
+//TODO Punto y coma no necesario
 var op:Char = 'a';
 
 fun main (args:Array<String>){
 
+    //TODO Val puede cambiar el contenido de sus datos pero no la direccion de memoria a la que apunta
     val array = arrayListOf(1,2,'+');
 
     val arrayTipo:ArrayList<Any> = arrayListOf();
@@ -21,20 +22,12 @@ fun main (args:Array<String>){
 fun calcular(array:ArrayList<Any>){
 
     for(a in array){
-        /*if (a is Char){
-            if (a == '+') suma(array[0] as Double,array[1] as Double);
-            else
-                if (a == '-') suma(array[0] as Double,array[1] as Double);
-                else
-                    if (a == '*') suma(array[0] as Double,array[1] as Double);
-                    else
-                        if (a == '/') suma(array[0] as Double,array[1] as Double);
-        }*/
-
+        //TODO is sustituye a InstanceOf() en Java
         if (a is Char){
             op = a;
         }
 
+        //TODO Sustituye al switch/case en Java
         when(a) {
             1 -> {
 
@@ -47,13 +40,20 @@ fun calcular(array:ArrayList<Any>){
     }
 
     when(op){
-        '+' -> suma(array[0] as Double,array[1] as Double);
+
+        //TODO Puedes cambiar el orden en el que se reciben los parametros indicando el nombre de la variable en la funcion
+        '+' -> suma(op2= array[0] as Double, op1= array[1] as Double);
         '-' -> resta(array[0] as Double,array[1] as Double);
         '*' -> mult(array[0] as Double,array[1] as Double);
         '/' -> div(array[0] as Double,array[1] as Double);
+        //TODO else sustituye a default
+        else -> println("nada")
     }
 
-    System.out.println();
+    /*TODO System.out.println() para a ser simplemente println()
+        TODO ademas las variables ya no ahce falta concatenarlas, puedes usar el signo $ y si son varias variables, ${}
+     */
+    println("hey $op ${array}");
 }
 
 fun suma(op1:Double, op2:Double):Double = op1 + op2;

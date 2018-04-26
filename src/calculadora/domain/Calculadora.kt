@@ -2,12 +2,20 @@ package calculadora.domain
 
 import calculadora.calcular
 
+//TODO el contructor esta en el nombre de la clase, ademas puedes crear constructores dentro de la estructura
 class Calculadora(op1:Double, op2:Double){
 
-    val operando1:Double = op1;
+    val operando1:Double = op1
     val operando2:Double = op2;
     var operador:String = "";
 
+    var test:Double = 0.0
+        set(valor) {
+
+        }
+    get() = field;
+
+    //TODO si creamos un segundo contructor tendremos que llamar al constructor padre con this()
     constructor(op1:Double, op2:Double, ope:String):this(op1,op2){
         this.operador = ope
     }
