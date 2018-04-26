@@ -1,5 +1,7 @@
 package calculadora.domain
 
+import calculadora.MyMath
+
 //TODO Kotlin permite añadir implementacion a las funciones de una interfaz
 interface ICalculadora{
     fun calcular():Double
@@ -69,7 +71,8 @@ class CalculadoraCientifica(op1: Double, op2: Double) : Calculadora(op1, op2) {
 }
 
 //TODO funcion extendida
-fun CalculadoraCientifica.raizCuadrada() = Math.sqrt(operando1)
+//TODO llamada a una funcion estatica
+fun CalculadoraCientifica.raizCuadrada() = MyMath.raizCuadrada(operando1)
 
 
 
