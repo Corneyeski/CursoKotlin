@@ -4,7 +4,9 @@ import java.util.function.Consumer
 
 fun main (args:Array<String>){
 
-    var empleados:ArrayList<Empleado> = arrayListOf()
+    //TODO un array puede ser val ya que aunque val es inmutable, arrayList si que es mutable y te permitira añadir o quitar parametros, pero no cambiar el valor de la variable (empleados)
+    val empleados:ArrayList<Empleado> = arrayListOf()
+
 
     empleados.add(Empleado("alan","vallve",21))
     empleados.add(Empleado("b","b",12))
@@ -56,4 +58,31 @@ fun main (args:Array<String>){
 
     println("EMPLEADOS ACTUALES EN LISTA NEGRA")
     listaNegra.forEach { println("Nombre: ${it.nombre} edad: ${it.edad} tipo: ${it.tipo} sueldo: ${it.salario}") }
+
+
+    //TODO Si una funcion esta por encima de la otra a la que llama, esta sera incapaz de verla, tiene orden sequencial
+    //TODO Unit es la version void de kotlin
+    //TODO se puede recibir una funcion como parametro que cumpla las condiciones de: Recibir los mismos parametros y retornar el mismo tipo
+    fun darFiniquito(despidos:ArrayList<Empleado>, fn:(Empleado) -> Unit){
+        //TODO Hace lo que sea
+    }
+
+    fun despedir(){
+
+        var despidos:List<Empleado> = empleados.filter { it.salario > 150 && it.tipo == Rol.INTERINO && it.edad > 55}
+
+        //TODO Podemos poner la funcion dentro de los parametros de la llamada o fuera, lo mas habitual es verlo fuera
+        darFiniquito(despidos as ArrayList<Empleado>,{
+            val finiq = Finiquiter.obtenerFiniquito()
+            it.finiquitar(finiq)
+            println(it.tipo)
+        })
+
+        darFiniquito(despidos as ArrayList<Empleado>){
+            println(it.tipo)
+        }
+    }
+
+
+
 }
