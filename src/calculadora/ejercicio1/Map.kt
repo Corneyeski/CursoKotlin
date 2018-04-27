@@ -23,13 +23,11 @@ fun main (args:Array<String>){
     var emp4 =  Empleado("Alan4","Vallve4",55)
     var parDNIEmpleado4 = "26061070T4" to emp4
     var emp5 =  Empleado("Alan5","Vallve5",62, Rol.FUNCIONARIO)
-    var parDNIEmpleado5 = "26061070T4" to emp5
+    var parDNIEmpleado5 = "26061070T5" to emp5
     var emp6 =  Empleado("Alan6","Vallve6",66, Rol.FUNCIONARIO)
-    var parDNIEmpleado6 = "26061070T4" to emp6
+    var parDNIEmpleado6 = "26061070T6" to emp6
 
     empleados = mutableMapOf(parDNIEmpleado, parDNIEmpleado2, parDNIEmpleado3, parDNIEmpleado4, parDNIEmpleado5, parDNIEmpleado6)
-
-    veerEmpleados()
 
     fun init(){
 
@@ -41,6 +39,7 @@ fun main (args:Array<String>){
         //TODO para hacer un foreach en un map con it, tenemos que indicar si queremos usar el value o la key
         empleados.forEach{it.value.asignarSueldo()}
 
+        verEmpleados()
 
         var despidos:List<Empleado> = empleados.filter {
             it.value.salario > 150 && it.value.edad > 55 && it.value.tipo == Rol.INTERINO
@@ -59,13 +58,20 @@ fun main (args:Array<String>){
         listaNegra?.forEach { k, v ->  println("Empleado en lista negra: ${v.nombre}")}
     }
 
+    val compararSueldos:(Empleado,Empleado) -> Empleado = fun(empl:Empleado, emp2:Empleado):Empleado{
+        return if(empl.salario > emp2.salario) empl else emp2
+    }
+
+    var comparadorSueldos2:(Empleado,Empleado) -> Empleado? = { emp1,emp2 -> if(emp1.salario > emp2.salario) emp1 else emp2}
+
+    val empComp = compararSueldos(empleados[""]!!, empleados[""]!!)
 
     init()
 }
 
-fun veerEmpleados(){
+fun verEmpleados(){
     //TODO Recorrer map con for
     for ((clave,valor) in empleados){
-        println("DNI: $clave nombre: ${valor.nombre}")
+        println("DNI: $clave nombre: ${valor.nombre} el sueldo es: ${valor.salario}")
     }
 }
