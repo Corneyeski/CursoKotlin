@@ -82,7 +82,4 @@ fun main (args:Array<String>){
             println(it.tipo)
         }
     }
-
-
-
 }
